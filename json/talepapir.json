@@ -1,22 +1,26 @@
 {
     "title": "Find fagenens fokuspunkter i teksten",
-    "Instruktion": "Find de mest relevante og fagligt interessante ord i besvarelsen af underspørgsmålet og træk dem over i stikordskassen. Tjek svar når du mener du har trukket de rigtige ord til kassen.",
-    "explanation": "Et talepapir hjælper til at holde fokus til eksamen, så du kan tale undgå at læse op og i stedet tale frit og perspektivere det du har fundet ud af.Lære at det er en proces at lave et godt talepapir, som passer til din stil. Træne at koge viden ind, vælge ud, præsentere i en overskuelig form, der følger en taksonomi.",
+    "Instruktion": "Find de mest relevante og fagligt interessante ord i besvarelsen af underspørgsmålet og træk dem over i stikordskassen. Tjek dine svar, når du mener du har trukket de rigtige ord til kassen.",
+    "explanation": "Et talepapir hjælper til at holde fokus til eksamen, så du kan tale undgå at læse op og i stedet tale frit og perspektivere det du har fundet ud af. Du skal arbejde med den proces det er, at lave et godt talepapir, som passer til din stil. Det handler om, at træne at koge viden ind, vælge ud, præsentere i en overskuelig form, der følger en taksonomi.",
+    "undersspm": "Hvorfor har danske unge verdensrekord i alkoholforbrug?",
     "tekst": "<p>At danske unge har det største alkoholforbrug i verden har grunde, som har en fællesfaglig forklaring. For det første har Danmark historisk en drukkultur, der altid har været tæt knyttet til indtagelse af alkohol. Siden vikingerne har mjød og sanseløs beruselse spillet en stor rolle i socialiseringen ind i de voksnes rækker. Og da danskerne blev kristnet under Harald Blåtand, er det oplagt at tænke, at altervinen var en afgørende faktor i vikingernes accept af nadveren og jesu blod og legeme. Danskerne er et reserveret folkefærd, som har brug for alkohol til at overskride generthed og reserverthed. Alkohol spiller en vigtig rolle i overgangsritualer, såvel som social og kulturelle begivenheder. Den særlig danske hygge, som vi brøster os af, er ryggraden i den danske identitet. Alle har brug for at hygge sig, også unge mennesker. Men hvorfor det går over gevind, kan have noget at gøre med at unge idag har en stor grad af frihed og den traditionelle familiemønstre har været under opbrud længe. Unge idag bliver påvirket fra alle kanter, det er ikke længere forældrene, slægten og kirken, der danner de unges normer. Og i dette hyperkomplekse samfund er det klart at de unge må have en lille en at skylle det hele ned med!</p>",
     "slutfeedback": "<h4>Godt arbejde!</h4><br/> <p>Du har klassificeret alle tekststykkerne korrekt. Klik for at prøve igen!</p>",
-    "kategorier": [
+    "kategorier_real": [
         "drukkultur",
         "socialiseringen",
         "kristnet",
         "nadveren",
         "fællesfaglig",
-        "overgangsritualer", 
-        "identitet", 
-        "frihed", 
-        "familiemønstre", 
-        "påvirket", 
-        "normer", 
+        "overgangsritualer",
+        "identitet",
+        "frihed",
+        "familiemønstre",
+        "påvirket",
+        "normer",
         "hyperkomplekse"
+    ],
+    "kategorier": [
+        "drukkultur"
     ],
     "feedback": [
         "<b>Historie</b>: Begrebet er en samlet betegnelse for konflikten mellem USSR og USA, som dominerede den historiske periode 1945-1989.<br/> <b>Samfundsfaglig</b>: Man arbejder med den kolde krig i samfundsfag som eksempel på bipolaritet og de deraf følgende konsekvenser for staters indbyrdes ageren i international konflikt.",
