@@ -19,45 +19,42 @@
             <div class="instr_container"></div>
             <div id="explanationWrapper"></div>
         </div>
-        
-        <div class="right_wrapper col-xs-6 textHolder" >
-            <h2>DIT TALEPAPIR</h2>
-            <div class="udklips_container">
-                <br/>
-                <div class="btn btn-lg dropzone_skrald"><span class="glyphicon glyphicon-trash"></span>
-                </div>
-                <div class="btn btn-primary btn_tjek">Tjek svar</div>
-                <div class="score_container"><span class="scoreText">Rigtige ord: </span><span class="QuestionCounter QuestionTask">0 ud af 5</span>
-                </div>
-            </div>
+        <div class="right_wrapper col-xs-6 textHolder">
+            <h4>DIT TALEPAPIR</h4>
+            <div class="udklips_container"></div>
+            <br/>
+            <!-- <div class="btn btn-lg dropzone_skrald"><span class="glyphicon glyphicon-trash"></span>
+                </div>-->
+            <div class="btn btn-primary btn_tjek">Tjek talepapir</div>
+            <!--<div class="score_container"><span class="scoreText">Rigtige ord: </span><span class="QuestionCounter QuestionTask">0 ud af 5</span>
+                </div>-->
         </div>
         <div class="left_wrapper col-xs-6">
-        
-            <div class="txt_besvarelse textHolder tekst_container ">
-                <div class="txtudsnit">
-                    <span class="udklips_content"></span>
-                    <div class="btn_transfer btn btn-info ">
-                        <span class="txt_transfer">Overfør udklip til talepapir</span>
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </div>
+            <div class="col-xs-12 txtudsnit">
+                <div class="col-xs-12  udklips_content"></div>
+                <div class="btn_transfer btn btn-info ">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    <span class="txt_transfer">Overfør udklip til talepapir</span>
                 </div>
+            </div>
+            <div class="txt_besvarelse textHolder tekst_container ">
             </div>
         </div>
     </div>
     <div class="draggable_text"></div>
-    < </body>
-        <script src="../library/vendor_scripts.js"></script>
-        <script src="../library/custom_scripts.js"></script>
-        <script src="talepapir.js"></script>
-        <script>
-        getAjaxData("GET", "json/talepapir.json", false, "json");
-        //loadData("json/problemformulering_1.json");
-        </script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-            one_line_footer();
-        });
-        </script>
+</body>
+<script src="../library/vendor_scripts.js"></script>
+<script src="../library/custom_scripts.js"></script>
+<script src="talepapir.js"></script>
+<script>
+getAjaxData("GET", "json/talepapir.json", false, "json");
+//loadData("json/problemformulering_1.json");
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    one_line_footer();
+});
+</script>
 </body>
 
 </html>
