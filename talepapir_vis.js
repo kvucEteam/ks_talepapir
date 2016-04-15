@@ -7,6 +7,9 @@ $(document).ready(function() {
     $(".btn_sentence").click(vis_sentence);
     $(".btn_stikord").click(vis_stikord);
 
+
+    vis_prosa();
+
 });
 
 

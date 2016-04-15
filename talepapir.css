@@ -37,6 +37,7 @@
 
 .score_container {
     position: relative;
+    top:30px;
 }
 
 .dropzone_skrald {
@@ -55,8 +56,6 @@
 .textHolder {
     min-width: 0px;
 }
-
-
 
 .edit_field {
     background-color: rgba(255, 255, 255, .2);

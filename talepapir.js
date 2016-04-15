@@ -9,6 +9,7 @@ var korrekt_Array = [];
 var score_Array=[];
 
 $(document).ready(function() {
+    //$("h1").html($("body").width() + "px");
 
     // alert(jsonData.tekst);
 
@@ -84,8 +85,9 @@ function transfer_text() {
             console.log("Den er der i forvejen!");
             exist = true;
         } else {
-
+            
         }
+
     });
 
     if (txt_selection.length > 0 && txt_selection.length < 65 && exist === false) {
@@ -99,11 +101,15 @@ function transfer_text() {
             editudklips_ord($(this));
         })
     }
+
+    tjeksvar();
 }
 
 
 function editudklips_ord(obj) {
     console.log("clicked");
+    $(".udklips_container").sortable("disable");
+
     var old_text = obj.text();
     var indeks = obj.index();
     //alert(indeks);
@@ -119,6 +125,8 @@ function editudklips_ord(obj) {
         $(".edit_field").remove();
 
         $(".udklips_ord").eq(indeks).html(new_text);
+         $(".udklips_container").sortable("enable");
+
         $(".udklips_ord").click(function() {
             editudklips_ord($(this));
         })
