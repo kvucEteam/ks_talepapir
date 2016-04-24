@@ -6,7 +6,9 @@ var pageY;
 var score = 0;
 var step = 0;
 var korrekt_Array = [];
-var score_Array=[];
+var score_Array = [];
+// HTML konverteret til "WORD format"
+// Gem fil som "Debat.docx"
 
 $(document).ready(function() {
     //$("h1").html($("body").width() + "px");
@@ -17,21 +19,25 @@ $(document).ready(function() {
 
     init();
 
-
     generateHTML();
+
+    if (jsonData.opgavetype =="fri"){
+    	alert("vi kører en fri opgavetype");
+    }
 
     updateScore();
 
     $(".btn_transfer").click(transfer_text);
     $(".btn_tjek").click(tjeksvar);
     $(".btn_feedback").click(feedback);
+    $(".btn_word").click(downloadWord);
 
-    $(document).keydown(function (e){
-    if(e.keyCode == 13){
-        transfer_text();
-        $(".edit_field").focusout();
-    }
-})
+    $(document).keydown(function(e) {
+        if (e.keyCode == 13) {
+            transfer_text();
+            $(".edit_field").focusout();
+        }
+    })
 
     setInterval(function() {
         update_selection();
@@ -53,7 +59,7 @@ function generateHTML() {
     $(".txt_besvarelse").prepend("<h4>" + jsonData.undersspm + "</h4>" + jsonData.tekst);
     $('#explanationWrapper').html(explanation(jsonData.explanation));
     $(".instr_container").html(instruction(jsonData.Instruktion));
-    $(".right_wrapper").css("height", $(".left_wrapper").height()+"px");
+    $(".right_wrapper").css("height", $(".left_wrapper").height() + "px");
 }
 
 function init() {
@@ -63,17 +69,18 @@ function init() {
     }
 
     $(".btn_feedback").fadeOut(0);
+    $(".btn_word").fadeOut(0); 
     //alert(korrekt_Array);
 };
 
 function update_selection() {
     txt_selection = window.getSelection().toString();
     if (txt_selection.length == 0) {
-        $(".udklips_content").html("Markér ord i teksten");
+        $(".udklips_content").html("De ord du har markeret i teksten står her");
     } else if (txt_selection.length < 65) {
         $(".udklips_content").html("'" + txt_selection + "'");
     } else {
-        $(".udklips_content").html("MAX 65 tegn!");
+        $(".udklips_content").html("Du kan maksimalt markere 65 tegn!");
     }
 }
 
@@ -81,11 +88,11 @@ function transfer_text() {
     var exist = false;
 
     $(".udklips_ord").each(function() {
-        if ($(this).html() == txt_selection) {
+        if ($(this).text() == txt_selection) {
             console.log("Den er der i forvejen!");
             exist = true;
         } else {
-            
+
         }
 
     });
@@ -95,7 +102,9 @@ function transfer_text() {
         $(".udklips_ord").eq(0).fadeOut(0);
         $(".udklips_ord").eq(0).fadeIn(200);
 
-        $(".udklips_container").sortable({});
+        $(".udklips_container").sortable({
+            containment: "parent" 
+        });
 
         $(".udklips_ord").eq($(".udklips_ord").length - 1).click(function() {
             editudklips_ord($(this));
@@ -125,7 +134,7 @@ function editudklips_ord(obj) {
         $(".edit_field").remove();
 
         $(".udklips_ord").eq(indeks).html(new_text);
-         $(".udklips_container").sortable("enable");
+        $(".udklips_container").sortable("enable");
 
         $(".udklips_ord").click(function() {
             editudklips_ord($(this));
@@ -142,7 +151,7 @@ function tjeksvar() {
     score = 0;
     $(".udklips_ord").each(function(index) {
         console.log("indeks: " + index)
-        var tekst = $(this).text().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").toLowerCase();
+        var tekst = $(this).text().replace(/[.,\/#!$%\^\*:{}=\-_`~()]/g, ""); //.toLowerCase();
         var tekst = tekst.replace("<span class='sucesslabel label label-success'>", "");
         var tekst = tekst.replace("</span>", "");
 
@@ -153,10 +162,10 @@ function tjeksvar() {
             if (korrekt_Array.indexOf(tekst_array[i]) > -1) {
 
                 // Add til korrekt_Array:
-                if (score_Array.indexOf(tekst_array[i])<0){
+                if (score_Array.indexOf(tekst_array[i]) < 0) {
                     score_Array.push(tekst_array[i]);
                 }
-            console.log("score_Array: ",score_Array);
+                console.log("score_Array: ", score_Array);
 
                 //$(this).addClass("btn-success").removeClass("btn-info");
                 //alert(tekst_array[i]);
@@ -176,12 +185,58 @@ function tjeksvar() {
 
 function updateScore() {
     $(".QuestionCounter").html(score_Array.length + " ud af " + jsonData.kategorier.length);
-    if(score_Array.length>0){
-        $(".btn_feedback").fadeIn(100);
+    if (score_Array.length > jsonData.kategorier.length / 2) {
+        $(".btn_feedback, .btn_word").fadeIn(500);
     }
 }
 
-function feedback(){
-    UserMsgBox("body", "<h3>Du har fundet " + score_Array.length + " vigtige ord i prosa teksten.</h3><p>En masse mere feedback her: </p> <p>Man kan fremad se, at de har været udset til at læse, at der skal dannes par af ligheder. Dermed kan der afsluttes uden løse ender, og de kan optimeres fra oven af at formidles stort uden brug fra presse. I en kant af landet går der blandt om, at de vil sætte den over forbehold for tiden. Vi flotter med et hold, der vil rundt og se sig om i byen. Det gør heller ikke mere. Men hvor vi nu overbringer denne størrelse til det den handler om, så kan der fortælles op til 3 gange. Hvis det er træet til dit bord der får dig op, er det snarere varmen over de andre. Selv om hun har sat alt mere frem, og derfor ikke længere kan betragtes som den glade giver, er det en nem sammenstilling, som bærer ved i lang tid. Det går der så nogle timer ud, hvor det er indlysende, at virkeligheden bliver tydelig istandsættelse. Det er opmuntrende og anderledes, at det er dampet af kurset i morgen. Der indgives hvert år enorme strenge af blade af større eller mindre tilsnit.</p>");
-        
+function feedback() {
+    UserMsgBox("body", "<h3>Du har fundet " + score_Array.length + " ud af "+ jsonData.kategorier.length + " vigtige ord i prosa teksten.</h3><p>"+ jsonData.slutfeedback +"</p>");
+
+}
+
+
+function downloadWord() {
+    var HTML = wordTemplate(); // HTML markup fra min template
+    var converted = htmlDocx.asBlob(HTML);
+    saveAs(converted, 'Talepapir.docx');
+}
+
+
+function wordTemplate() {
+    var HTML = '';
+    HTML += '<!DOCTYPE html>';
+    HTML += '<html>';
+    HTML += '<head>';
+    HTML += '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'; // Fixes issue with danish characters on Internet Explore 
+    HTML += '<style type="text/css">';
+    HTML += 'body {font-family: arial;}';
+    HTML += 'h1 {}';
+    HTML += 'h2 {}';
+    HTML += 'h3 {color: #717272;}';
+    HTML += 'h4 {color: #56bfc5;}';
+    HTML += 'h5 {}';
+    HTML += 'h6 {}';
+    HTML += '.selected {color: #56bfc5; width: 25%;}';
+    HTML += 'p {font-size: 14px; margin-bottom: 5px}';
+    HTML += 'table {padding: 8px; width: 100%;}';
+    HTML += 'td {width: 25%;}';
+    HTML += 'ol {color: #717272;}';
+    HTML += '</style>';
+    HTML += '</head>';
+    HTML += '<body>';
+    HTML += '<h1>Talepapir</h1>';
+    HTML += '<h3>Underspørgsmål: ' + jsonData.undersspm + '</h3>';
+    HTML += '<h2>Dine stikord og stikordsagtige sætninger: </h2>';
+    HTML += '<h3><ul>';
+    for (var i = 0; i < $(".udklips_ord").length; i++) {
+        HTML += '<li>' + $(".udklips_ord").eq(i).html() + '</li>';
+        HTML += '<br/>';
+        // HTML +=      '<hr/>';
+    }
+    HTML += '</ul></h3>';
+    HTML += '</body>';
+    HTML += '</html>';
+    // document.write(HTML);
+    return HTML;
 }

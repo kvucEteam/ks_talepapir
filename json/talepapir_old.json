@@ -10,17 +10,29 @@
         "socialiseringen",
         "kristnet",
         "nadveren",
-        "fællesfaglig",
         "overgangsritualer",
         "identitet",
         "frihed",
         "familiemønstre",
-        "påvirket",
         "normer",
         "hyperkomplekse"
     ],
     "kategorier_test": [
         "drukkultur"
+    ],
+
+    "sentences": [
+        "Danmarks historiske drukkultur",
+        "Alkohol er en del af socialiseren i Danmark",
+        "Da danmark blev kristnet",
+        "Selv nadveren handler om alkohol",
+        "Alkohol spiller en vigtig rolle i overgangsritualer",
+        "Alkohol er ryggraden i den danske identitet.",
+        "Unge idag har en stor grad af frihed", 
+        "Traditionelle familiemønstre har været under opbrud længe", 
+        "Det er ikke længere forældrene, slægten og kirken, der danner de unges normer",
+        "Danmark er et hyperkomplekst samfund "
+
     ],
     "feedback": [
         "<b>Historie</b>: Begrebet er en samlet betegnelse for konflikten mellem USSR og USA, som dominerede den historiske periode 1945-1989.<br/> <b>Samfundsfaglig</b>: Man arbejder med den kolde krig i samfundsfag som eksempel på bipolaritet og de deraf følgende konsekvenser for staters indbyrdes ageren i international konflikt.",

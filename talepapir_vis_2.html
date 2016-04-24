@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Talepapir</title>
+    <!-- http://www.robotstxt.org/meta.html -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../library/css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="talepapir.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>Se 3 forskellige versioner af en tekst som talepapir</h1>
+        <div class="inst_wrapper col-xs-9">
+            <div class="instr_container"></div>
+            <div id="explanationWrapper"></div>
+        </div>
+        <div class="btn_container col-xs-12">
+            <div class="btn_prosa btn btn-lg btn-info">Prosa</div>
+            <div class="btn_sentence btn btn-lg btn-info">Sætninger</div>
+            <div class="btn_stikord btn btn-lg btn-info">Stikord</div>
+        </div>
+        <div class="col-xs-12 textHolder">
+            <h4 class="tale_header">DIT TALEPAPIR</h4>
+            <div class="tale_content"></div>
+        </div>
+    </div>
+</body>
+<script src="../library/vendor_scripts.js"></script>
+<script src="../library/custom_scripts.js"></script>
+<script src="talepapir_vis.js"></script>
+<script>
+getAjaxData("GET", "json/talepapir_2.json", false, "json");
+//loadData("json/problemformulering_1.json");
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    one_line_footer();
+});
+</script>
+</body>
+
+</html>

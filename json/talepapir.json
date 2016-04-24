@@ -1,52 +1,37 @@
 {
-    "title": "Find fagenens fokuspunkter i teksten",
-    "Instruktion": "Marker de relevante og fagligt interessante ord i teksten og overfør dem til dit talepapir.<br/> Derefter skal du redigere indhold og rækkefølge, så det bliver til et overskueligt talepapir man kan bruge til eksamen.",
-    "explanation": "Et talepapir hjælper til at holde fokus til eksamen, så du kan tale undgå at læse op og i stedet tale frit og perspektivere det du har fundet ud af. Du skal arbejde med den proces det er, at lave et godt talepapir, som passer til din stil. Det handler om, at træne at koge viden ind, vælge ud, præsentere i en overskuelig form, der følger en taksonomi.",
-    "undersspm": "Hvorfor har danske unge verdensrekord i alkoholforbrug?",
-    "tekst": "<p>At danske unge har det største alkoholforbrug i verden har grunde, som har en fællesfaglig forklaring.</p><p>For det første har Danmark historisk en drukkultur, der altid har været tæt knyttet til indtagelse af alkohol. Siden vikingerne har mjød og sanseløs beruselse spillet en stor rolle i socialiseringen ind i de voksnes rækker. Og da danskerne blev kristnet under Harald Blåtand, er det oplagt at tænke, at altervinen var en afgørende faktor i vikingernes accept af nadveren og jesu blod og legeme.</p> <p>Danskerne er et reserveret folkefærd, som har brug for alkohol til at overskride generthed og reserverthed. Alkohol spiller en vigtig rolle i overgangsritualer, såvel som social og kulturelle begivenheder. Den særlig danske hygge, som vi brøster os af, er ryggraden i den danske identitet. </p><p>Alle har brug for at hygge sig, også unge mennesker. Men hvorfor det går over gevind, kan have noget at gøre med at unge idag har en stor grad af frihed og den traditionelle familiemønstre har været under opbrud længe. Unge idag bliver påvirket fra alle kanter, det er ikke længere forældrene, slægten og kirken, der danner de unges normer.</p> Og i dette hyperkomplekse samfund er det klart at de unge må have en lille en at skylle det hele ned med!</p>",
-    "slutfeedback": "<h4>Godt arbejde!</h4><br/> <p>Du har klassificeret alle tekststykkerne korrekt. Klik for at prøve igen!</p>",
+    "title": "Synopsen som et talepapir til eksamen",
+    "Instruktion": "Din synopsis er ikke et manuskript til oplæsning - men er derimod et talepapir med stikord eller stikords-agtige sætninger, som du kan uddybe og tale ud fra. Nu skal du lære at udvælge de rigtige stikord til din synopsis.",
+    "explanation": "<b>Hvordan finder man de rigtige stikord til sin synopsis?</b><ul><li>Stikordene er nøgleord - dvs. de ting, du ikke må glemme at få sagt.</li><li>De rigtige stikord - og rækkefølgen af dem - viser den røde tråd i din synopsis.</li><li>Stikordene er ofte faglige begreber, da anvendelsen af faglige begreber viser en dybere forståelse for faget.</li><li>Faglige begreber kan man forklare og uddybe (ved hjælp af sin viden fra undervisningen).</li>",
+    "undersspm": "Hvad kendetegnede henholdsvis DDR og BRD?",
+    "tekst": "<p>Efter 2. Verdenskrig blev den vestlige del af Tyskland (BRD) samt den vestlige del af Berlin underlagt vestmagterne USA; Storbritannien og Frankrig. Dermed indførtes de politiske og økonomiske værdier der repræsenterede USA. <br/>Således fik man i Vesttyskland indført demokrati med b.l.a. ytringsfrihed og frie valg. Samtidig blev der indført markedsøkonomi inspireret af den økonomiske liberalisme som herskede i USA. I forhold til fx religion blev der indført religionsfrihed i overensstemmelse med den politiske liberalisme. Den kristne kirke  i Vesttyskland (særligt i den katolske del)  havde dog en stor indflydelse på værdier, moral og etik og dermed også på den førte politik i Tyskland. I forhold til det verdslige Østtyskland, kan man for Vesttysklands vedkommende tale om en tendens til afsekularisering.<br/>I Østtyskland (DDR) indførtes i modsætning til i BRD et system der byggede på socialisme efter sovjetisk forbillede. Efter 2 Verdenskrig stod de sovjetiske tropper massivt i Østeuropa og således også i Østtyskland. I DDR dannede sovjet (i samarbejde med socialisterne i Østtyskland) således både et étpartisystem samt planøkonomi og dermed et politisk og økonomisk system, der var den direkte modsætning til styreformen i Vesttyskland. Styret indførte  en høj grad af censur og kontrol med sin egen befolkning. Ydermere blev religion officielt afskaffet i overensstemmelse med socialismen. Hermed blev DDR et sekulariseret samfund.</p>",
+    "slutfeedback": "<h4>Flot klaret</h4><p>Du kan nu downloade dit talepapir.<br/>Kig på spørgsmålet igen og prøv nu ved hjælp af dine udvalgte stikord at give en mundtlig besvarelse af spørgsmålet.</p>",
     "kategorier": [
-        "drukkultur",
-        "socialiseringen",
-        "kristnet",
-        "nadveren",
-        "overgangsritualer",
-        "identitet",
-        "frihed",
-        "familiemønstre",
-        "normer",
-        "hyperkomplekse"
+        "BRD",
+        "demokrati",
+        "ytringsfrihed",
+        "markedsøkonomi",
+        "liberalisme",
+        "afsekularisering",
+        "DDR",
+        "socialisme",
+        "étpartisystem",
+        "planøkonomi",
+        "censur",
+        "sekulariseret"
     ],
-    "kategorier_test": [
-        "drukkultur"
-    ],
-
     "sentences": [
-        "Danmarks historiske drukkultur",
-        "Alkohol er en del af socialiseren i Danmark",
-        "Da danmark blev kristnet",
-        "Selv nadveren handler om alkohol",
-        "Alkohol spiller en vigtig rolle i overgangsritualer",
-        "Alkohol er ryggraden i den danske identitet.",
-        "Unge idag har en stor grad af frihed", 
-        "Traditionelle familiemønstre har været under opbrud længe", 
-        "Det er ikke længere forældrene, slægten og kirken, der danner de unges normer",
-        "Danmark er et hyperkomplekst samfund "
+        "BRD: (1949) - Vestlig besættelseszone. USA, England og Frankrig",
+        "Demokrati: BRD får frie valg og flerpartisystem",
+        "Markedsøkonomi: Udbud og efterspørgsel, fri konkurrence (økonomisk liberalisme)",
+        "Liberalisme: Mennesket som rationel og fornuftigt, (politisk liberalisme)",
+        "Afsekularisering: Tendens til at kirken i BRD får større indflydelse politisk og ift. værdier og normer.",
+        "DDR: (1949) USSRs besættelseszone",
+        "Socialisme: Mennesket som et solidarisk væsen. Fokus på økonomisk lighed.",
+        "Étpartisystem: Der er kun muligt at stemme på kandidater udpeget af SED. ",
+        "Planøkonomi: Staten fastsætter produktion og pris. 5 års planer ",
+        "Censur: Stasi kontrollerede medier og overvågede  befolkningen",
+        "Sekulariseret: Kirken var i princippet forbudt i DDR men reelt blev den aldrig helt afskaffet. Stasi søgte at kontrollere kirken."
 
-    ],
-    "feedback": [
-        "<b>Historie</b>: Begrebet er en samlet betegnelse for konflikten mellem USSR og USA, som dominerede den historiske periode 1945-1989.<br/> <b>Samfundsfaglig</b>: Man arbejder med den kolde krig i samfundsfag som eksempel på bipolaritet og de deraf følgende konsekvenser for staters indbyrdes ageren i international konflikt.",
-        "Kommunisme er en ideologi og derfor primært et samfundsfagligt begreb. Man kan selvfølgelig også arbejde med kommunismen som begreb i historie med henblik på at øge forståelsen for den kolde krig. Da teksten i høj grad er udtryk for en kritik af kommunismen, er det vigtig at forstå det centrale i den kommunistiske ideologi.",
-        "I protestantisk kristendom er det en udbredt forestilling, at det er troen på Gud og ikke specifikke handlinger, der frelser mennesket. Reagan henviser til læren om at troen på Gud giver adgang til et liv efter døden mens et liv i gudløshed kun fører til fortabelse efter døden.<br/>For at forklare USA’s selvforståelse og ageren under den kolde krig, er det nødvendigt at kende til det verdenssyn og den forståelse af frelsen, som kendetegner protestantisk kristendom. ",
-        "Det er almindelig morallære, at man som kristen er forpligtet til aktivt at bekæmpe den ondskab og ugudelighed, man møder, men også at man bør gå i forbøn for synderne og tilgive sine fjender. <br/>Religionsfaget kan bruges til at undersøge forskellen på de moralske principper, der prægede de to parters retorik under den kolde krig. Man kan således blive klogere på konflikten, hvis man undersøger modsætningerne mellem religiøs og ikke-religiøs morallære.",
-        "En totalitær stat dækker over en bestemt styreform. En totalitær stat knytter sig derfor primært til samfundsfag, hvor definitioner og arbejdet med forskellige styreformer er centralt. Kilden anvender ordene “totalitært mørke” for at fremhæve den sovjetiske styreform negativt. Dette ordvalg kunne også være interessant at forfølge i historie, hvis man ville sige noget om afsender og budskab.",
-        "Formuleringen er en indirekte kritik af statsapparatets almægtige og næsten guddommelige status i totalitære regimer. Det er vigtigt - særligt i historiefaget, men også i religion - at være opmærksom på, præcis hvilke ord statsledere på begge sider af jerntæppet brugte til at mobilisere deres publikum i kampen mod fjenden. Da der også refereres til statens rolle, har formuleringen også relevans for samfundsfag.",
-        "Knytter sig til samfundsfag. Forholdet mellem stat og individ er centralt i samfundsfag. I kilden rejses kritik af Sovjetunionens og kommunismens tilsidesættelse af individet til fordel for staten (den totalitære stat). Det er vigtigt for forståelsen af USA og Reagans syn på Sovjetunionens under den kolde krig.",
-        "Her er en direkte reference til historien, og det er derfor relevant i sig selv. Det er vigtigt at kunne gå ind i en dialog om histories betydning som argumentation for en bestemt sag. Er der fx tale om historiebrug eller misbrug?",
-        "Vigtigt citat, da historien her bruges som argumentation for et synspunkt. Brug og misbrug af historien er altså i spil her. Det er vigtigt at kunne gå i dialog om historiske kendsgerninger og hvad der menes med “ondskabens imperium”, som Reagan ofte brugte i sin retorik i karakteristikken af Sovjetunionen.",
-        "Referencen til “rigtigt og forkert” og “godt og ondt” afspejler et dualistisk fjendebillede, hvor gudfrygtighed er lig med godt, og gudløshed og ateisme er lig med ondt. Reagan ønsker at involvere sit kristne publikum i den kolde krig ved at gøre konflikten til et kristent-moralsk anliggende med tydelig adskillelse af godt (“os”) og ondt (“dem”). Det er vigtigt for forståelsen af fjendskabet under den kolde krig at undersøge, hvordan modsætningen mellem det grundlæggende religiøse og det ateistiske samfund anvendtes til at skabe fjendebilleder.",
-        "Citatet er primært historiefagligt. Reagan henviser her til USA’s historie, selvforståelse og identitet. Amerikanernes uafhængighed fra Storbritannien og liberale udgangspunkt er væsentligt i denne sammenhæng. Hvis man ser på ordet “frihed” som en del af den liberale ideologi, kan man også arbejde med citatet i samfundsfag.",
-        "USA’s grundlæggere mente, at nationen var udvalgt af Gud til at være foregangsland for resten af verden. I den typisk amerikanske gudscentrerede verdensopfattelse betyder dette samtidig, at intet kan lykkes uden Guds velsignelse. I modpartens kommunistiske og ateistiske samfundssyn er denne opfattelse selvsagt utænkelig. Religionsfaget kan bruges til at vise, hvordan USA’s selvforståelse, som jo dikterer, at nationen er skæbnebestemt til at redde verden, var en af flere vigtig årsager til deres dybe engagement i den kolde krig og i mange andre globale konflikter. "
     ]
 
 }

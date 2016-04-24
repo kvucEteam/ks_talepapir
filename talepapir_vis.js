@@ -6,10 +6,7 @@ $(document).ready(function() {
     $(".btn_prosa").click(vis_prosa);
     $(".btn_sentence").click(vis_sentence);
     $(".btn_stikord").click(vis_stikord);
-
-
     vis_prosa();
-
 });
 
 
@@ -28,6 +25,7 @@ function vis_sentence() {
 
 function vis_stikord() {
     $(".tale_header").html("STIKORDSVISNING");
+    $(".tale_content").html("");
     for (var i = 0; i < jsonData.kategorier.length; i++) {
         $(".tale_content").append("<li>" + jsonData.kategorier[i] + "</li>")
     }
