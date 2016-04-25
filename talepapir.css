@@ -55,6 +55,7 @@
 
 .textHolder {
     min-width: 0px;
+    min-height: 300px;
 }
 
 .edit_field {
@@ -74,4 +75,11 @@
 
 .omtalepapir{
     height: auto;
+}
+
+textarea{
+    height: 300PX;
+    width: 100%;
+    border:0px solid white;
+    resize: none;
 }

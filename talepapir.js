@@ -7,6 +7,7 @@ var score = 0;
 var step = 0;
 var korrekt_Array = [];
 var score_Array = [];
+var edit_mode = false;
 // HTML konverteret til "WORD format"
 // Gem fil som "Debat.docx"
 
@@ -21,9 +22,7 @@ $(document).ready(function() {
 
     generateHTML();
 
-    if (jsonData.opgavetype =="fri"){
-    	alert("vi kører en fri opgavetype");
-    }
+
 
     updateScore();
 
@@ -53,6 +52,12 @@ $(document).ready(function() {
         hoverClass: 'dropping',
     });
 
+    //Hvis man er i frit mode, kan man selv kopiere text til textholderen og så arbejde med den: 
+    if (jsonData.opgavetype == "fri") {
+        fri_opgave();
+    }
+
+    //
 });
 
 function generateHTML() {
@@ -68,19 +73,22 @@ function init() {
         //alert("hej");
     }
 
+
     $(".btn_feedback").fadeOut(0);
-    $(".btn_word").fadeOut(0); 
+    $(".btn_word").fadeOut(0);
     //alert(korrekt_Array);
 };
 
 function update_selection() {
-    txt_selection = window.getSelection().toString();
-    if (txt_selection.length == 0) {
-        $(".udklips_content").html("De ord du har markeret i teksten står her");
-    } else if (txt_selection.length < 65) {
-        $(".udklips_content").html("'" + txt_selection + "'");
-    } else {
-        $(".udklips_content").html("Du kan maksimalt markere 65 tegn!");
+    if (edit_mode == false) {
+        txt_selection = window.getSelection().toString();
+        if (txt_selection.length == 0) {
+            $(".udklips_content").html("De ord du har markeret i teksten står her");
+        } else if (txt_selection.length < 65) {
+            $(".udklips_content").html("'" + txt_selection + "'");
+        } else {
+            $(".udklips_content").html("Du kan maksimalt markere 65 tegn!");
+        }
     }
 }
 
@@ -103,7 +111,7 @@ function transfer_text() {
         $(".udklips_ord").eq(0).fadeIn(200);
 
         $(".udklips_container").sortable({
-            containment: "parent" 
+            containment: "parent"
         });
 
         $(".udklips_ord").eq($(".udklips_ord").length - 1).click(function() {
@@ -191,7 +199,7 @@ function updateScore() {
 }
 
 function feedback() {
-    UserMsgBox("body", "<h3>Du har fundet " + score_Array.length + " ud af "+ jsonData.kategorier.length + " vigtige ord i prosa teksten.</h3><p>"+ jsonData.slutfeedback +"</p>");
+    UserMsgBox("body", "<h3>Du har fundet " + score_Array.length + " ud af " + jsonData.kategorier.length + " vigtige ord i prosa teksten.</h3><p>" + jsonData.slutfeedback + "</p>");
 
 }
 
@@ -240,3 +248,43 @@ function wordTemplate() {
     // document.write(HTML);
     return HTML;
 }
+
+/////////////////////////////////////////////////////////////
+////////// FRI OPGAVE VARATION HERUNDER: ////////////////////
+
+function fri_opgave() {
+    $(".scoreText, .QuestionCounter").fadeOut(0);
+    $(".btn_word").fadeIn(0);
+    $(".left_wrapper").append("<br/><div class='btn btn-info btn_edit'>Indsæt eller skriv din egen tekst ind</div>")
+    $(".btn_edit").click(edit_textfield);
+    $(".txt_besvarelse").html("Skriv eller indsæt din egen tekst her...")
+}
+
+function edit_textfield() {
+console.log ("editing_field");
+
+    var old_tekst = $(".txt_besvarelse").html();
+    var regex = /<br\s*[\/]?>/gi;
+    old_tekst = old_tekst.replace(regex, "\n");
+    console.log("old_tekst: " + old_tekst);
+    edit_mode = true;
+
+    $(".txt_besvarelse").html("<textarea>" + old_tekst + "</textarea>");
+    
+
+    $("textarea").focus();
+
+    $("textarea").focusout(function() {
+        edit_mode = false;
+
+        var input_text = $("textarea").val();
+
+        var input_text = input_text.replace(/[\n]/g, '<br/>');
+
+        console.log("input_text:" + input_text);
+        $(".txt_besvarelse").html(input_text);
+    });
+}
+
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
