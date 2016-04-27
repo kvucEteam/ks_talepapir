@@ -37,7 +37,7 @@
 
 .score_container {
     position: relative;
-    top:30px;
+    top: 30px;
 }
 
 .dropzone_skrald {
@@ -64,22 +64,91 @@
     width: 100%
 }
 
-.txt_transfer{
+.txt_transfer {
     margin-left: 10px;
 }
 
-.sucesslabel{
+.sucesslabel {
     font-size: 100%;
     padding: 1px 4px 1px 4px;
 }
 
-.omtalepapir{
+.omtalepapir {
     height: auto;
 }
 
-textarea{
+textarea {
     height: 300PX;
     width: 100%;
-    border:0px solid white;
+    border: 0px solid white;
     resize: none;
+}
+
+.edit_btn {
+    position: absolute;
+    font-size: 1.4em;
+    right: 8px;
+    top: 8px;
+    opacity: .5;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.btn {
+    position: relative;
+    z-index: 4;
+}
+
+.inner_container {
+    position: relative;
+}
+
+.edit_field {
+    width: 97%;
+}
+
+.deleteCallOut {
+    position: absolute;
+    top: -43px;
+    right: 1px;
+    z-index: 100;
+    padding: 0px 20px 0px 20px;
+    cursor: pointer;
+}
+
+.glyphicon-pencil {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.glyphicon-arrow-down {
+    color: #56BFC5;
+    font-size: 2em;
+    position: absolute;
+    right: 30px;
+    top: -19px;
+    z-index: 99;
+}
+
+.glyphicon-arrow-left {
+    color: #56BFC5;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
 }

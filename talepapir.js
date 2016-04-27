@@ -57,6 +57,9 @@ $(document).ready(function() {
         fri_opgave();
     }
 
+
+    //txt_selection = "Tester løs";
+    //transfer_text();
     //
 });
 
@@ -65,6 +68,8 @@ function generateHTML() {
     $('#explanationWrapper').html(explanation(jsonData.explanation));
     $(".instr_container").html(instruction(jsonData.Instruktion));
     $(".right_wrapper").css("height", $(".left_wrapper").height() + "px");
+    $(".inst_wrapper, .right_wrapper, h1, .txtudsnit").addClass("noselect");
+
 }
 
 function init() {
@@ -94,7 +99,6 @@ function update_selection() {
 
 function transfer_text() {
     var exist = false;
-
     $(".udklips_ord").each(function() {
         if ($(this).text() == txt_selection) {
             console.log("Den er der i forvejen!");
@@ -106,12 +110,15 @@ function transfer_text() {
     });
 
     if (txt_selection.length > 0 && txt_selection.length < 65 && exist === false) {
-        $(".udklips_container").append("<div class='udklips_ord btn btn-info '>" + txt_selection + "</div>");
+        $(".udklips_container").append("<div class='inner_container'><div class='udklips_ord btn btn-info '>" + txt_selection + "</div><div class='edit_btn glyphicon glyphicon-pencil'></div>");
         $(".udklips_ord").eq(0).fadeOut(0);
         $(".udklips_ord").eq(0).fadeIn(200);
 
         $(".udklips_container").sortable({
-            containment: "parent"
+            containment: "parent",
+            sortAnimateDuration: 500,
+            sortAnimate: true,
+            distance: 25
         });
 
         $(".udklips_ord").eq($(".udklips_ord").length - 1).click(function() {
@@ -122,7 +129,6 @@ function transfer_text() {
     tjeksvar();
 }
 
-
 function editudklips_ord(obj) {
     console.log("clicked");
     $(".udklips_container").sortable("disable");
@@ -132,8 +138,9 @@ function editudklips_ord(obj) {
     //alert(indeks);
     $(".udklips_ord").off("click");
 
-    $(".udklips_ord").eq(indeks).html("<input type='text' class='edit_field' value='" + old_text + "'>");
+    obj.html("<input type='text' class='edit_field' value='" + old_text + "'>"); //<div class='edit_btn glyphicon glyphicon-trash'></div>");
 
+    obj.parent().find(".edit_btn").switchClass("glyphicon-pencil", "glyphicon-trash");
     $(".edit_field").focus();
 
     $(".edit_field").focusout(function() {
@@ -141,7 +148,9 @@ function editudklips_ord(obj) {
         var new_text = $(".edit_field").val();
         $(".edit_field").remove();
 
-        $(".udklips_ord").eq(indeks).html(new_text);
+        obj.html(new_text); // + "<div class='edit_btn glyphicon glyphicon-pencil'></div>");
+        obj.parent().find(".edit_btn").switchClass("glyphicon-trash", "glyphicon-pencil");
+
         $(".udklips_container").sortable("enable");
 
         $(".udklips_ord").click(function() {
@@ -150,8 +159,94 @@ function editudklips_ord(obj) {
         tjeksvar();
     });
 
+    $(".glyphicon-trash").click(function() {
+        var indeks = $(this).parent().index();
+        console.log("parent-indeks: " + indeks);
+        deleteCallOut(indeks);
+        console.log("clicked_trash");
+        //$(".glyphicon-trash").off("click");
+    });
 
 }
+
+
+function deleteCallOut(indeks) {
+    //$(".inner_container").eq(indeks).addClass("readyfordelete");
+    $(".inner_container").css("opacity", ".4");
+    $(".inner_container").eq(indeks).css("opacity", "1");
+
+    $(".inner_container").eq(indeks).find(".edit_btn").switchClass("glyphicon-pencil", "glyphicon-trash");
+    $(".inner_container").eq(indeks).prepend("<div class='label label-primary deleteCallOut'><h5>Slet?</h5></div><span class='glyphicon glyphicon-arrow-down'></span>");
+    $(".inner_container").eq(indeks).find(".glyphicon-trash").addClass("readyfordelete");
+    $(".deleteCallOut").click(function() {
+        $(this).parent().remove();
+        $(".deleteCallOut").off("click");
+        $(".inner_container").css("opacity", "1");
+
+    });
+
+    //
+
+    /*$(':not(.readyfordelete)').click(function(){
+console.log("clicked elsewhere");
+    });*/
+
+
+    $(document).click(function(e) {
+        if ($(e.target).closest('.readyfordelete').length === 0) {
+            console.log("clicked_elsewhere");
+            $(".deleteCallOut").remove();
+            $(".glyphicon-arrow-down").remove();
+            $(".glyphicon-trash").removeClass("readyfordelete");
+            $(".edit_btn").switchClass("glyphicon-trash", "glyphicon-pencil");
+            $(".readyfordelete, .deleteCallOut").off("click");
+            $(document).off("click");
+            $(".inner_container").css("opacity", "1");
+        }
+
+    });
+
+}
+
+/*function editudklips_ord(obj) {
+    console.log("clicked_container");
+    $(".udklips_container").sortable("disable");
+
+    var old_text = obj.text();
+    var indeks = obj.index();
+    console.log("indeks: "  + indeks + " old_text: " + old_text);
+    //$(".udklips_ord").off("click");
+
+    $(".udklips_ord").eq(indeks).html("<input type='text' class='edit_field' value='" + old_text + "'><div class='edit_btn glyphicon glyphicon-trash'></div>");
+
+    $(".edit_field").focus();
+
+    $(".edit_field").focusout(function() {
+        console.log("FOCUSOUT");
+        var new_text = $(".edit_field").val();
+        $(".edit_field").remove();
+
+        $(".udklips_ord").eq(indeks).html(new_text + "<div class='edit_btn glyphicon glyphicon-pencil'></div>");
+        $(".udklips_container").sortable("enable");
+
+        $(".udklips_ord").click(function() {
+            editudklips_ord($(this));
+        })
+        tjeksvar();
+    });
+
+    $(".edit_btn").click(function(e) {
+    	 e.stopPropagation();
+        console.log("clicked_trash");
+    })
+
+
+    /////////////////////////////
+    //////////////Trash it! ////
+
+
+
+}*/
 
 
 
@@ -254,14 +349,14 @@ function wordTemplate() {
 
 function fri_opgave() {
     $(".scoreText, .QuestionCounter").fadeOut(0);
-    $(".btn_word").fadeIn(0);
-    $(".left_wrapper").append("<br/><div class='btn btn-info btn_edit'>Indsæt eller skriv din egen tekst ind</div>")
+    $("	.btn_word").fadeIn(0);
+    $(".left_wrapper").append("<br/><div class='btn btn-info btn_edit'>Indsæt eller skriv din egen tekst ind<span style='margin-left:20px; font-size:1.4em; color:#888' class='glyphicon glyphicon-pencil'></span></div>")
     $(".btn_edit").click(edit_textfield);
-    $(".txt_besvarelse").html("Skriv eller indsæt din egen tekst her...")
+    $(".txt_besvarelse").html("Klik på knappen under, og sæt din egen tekst ind")
 }
 
 function edit_textfield() {
-console.log ("editing_field");
+    console.log("editing_field");
 
     var old_tekst = $(".txt_besvarelse").html();
     var regex = /<br\s*[\/]?>/gi;
@@ -270,7 +365,7 @@ console.log ("editing_field");
     edit_mode = true;
 
     $(".txt_besvarelse").html("<textarea>" + old_tekst + "</textarea>");
-    
+
 
     $("textarea").focus();
 
@@ -282,7 +377,7 @@ console.log ("editing_field");
         var input_text = input_text.replace(/[\n]/g, '<br/>');
 
         console.log("input_text:" + input_text);
-        $(".txt_besvarelse").html(input_text);
+        $(".txt_besvarelse").html(input_text + "");
     });
 }
 
