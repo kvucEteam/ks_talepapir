@@ -88,11 +88,11 @@ function update_selection() {
     if (edit_mode == false) {
         txt_selection = window.getSelection().toString();
         if (txt_selection.length == 0) {
-            $(".udklips_content").html("De ord du har markeret i teksten står her");
+            $(".udklips_content").html("De ord, som du markerer, står her").css("color", "#aaa");
         } else if (txt_selection.length < 65) {
-            $(".udklips_content").html("'" + txt_selection + "'");
+            $(".udklips_content").html("'" + txt_selection + "'").css("color", "#000");
         } else {
-            $(".udklips_content").html("Du kan maksimalt markere 65 tegn!");
+            $(".udklips_content").html("Du kan maksimalt markere 65 tegn!").css("color", "red");
         }
     }
 }
@@ -250,7 +250,7 @@ console.log("clicked elsewhere");
 
 
 
-function tjeksvar() {
+/*function tjeksvar() {
     score = 0;
     $(".udklips_ord").each(function(index) {
         console.log("indeks: " + index)
@@ -279,10 +279,61 @@ function tjeksvar() {
                 //korrekt_Array.splice(index, 1);
                 //score++;
                 updateScore();
-            } else {
-
-            };
+            }
         }
+    });
+}*/
+
+function tjeksvar() {
+    score = 0;
+    $(".udklips_ord").each(function(index) {
+        console.log("indeks: " + index)
+        var tekst = $(this).text().replace(/[.,\/#!$%\^\*:{}=\-_`~()]/g, ""); //.toLowerCase();
+        var tekst = tekst.replace("<span class='sucesslabel label label-success'>", "");
+        var tekst = tekst.replace("</span>", "");
+
+        var old_html = tekst;
+        for (var i = 0; i < jsonData.kategorier.length; i++) {
+            //console.log(jsonData.kategorier[i]);
+
+            if (tekst.indexOf(jsonData.kategorier[i]) > -1) {
+                console.log("Kategori match:" + jsonData.kategorier[i])
+                    // Add til korrekt_Array:
+
+                if (score_Array.indexOf(jsonData.kategorier[i]) < 0) {
+                    score_Array.push(jsonData.kategorier[i]);
+                }
+
+                old_html = old_html.replace(jsonData.kategorier[i], "<span class='sucesslabel label label-success'>" + jsonData.kategorier[i] + "</span>");
+                console.log("new html: " + old_html);
+                $(this).html(old_html);
+                updateScore();
+            }
+        }
+
+        //var tekst_array = tekst.split(" ");
+
+        /*for (var i = 0; i < tekst_array.length; i++) {
+            console.log("looper indeks:" + index + "tekst_array: " + i);
+            if (korrekt_Array.indexOf(tekst_array[i]) > -1) {
+
+                // Add til korrekt_Array:
+                if (score_Array.indexOf(tekst_array[i]) < 0) {
+                    score_Array.push(tekst_array[i]);
+                }
+                console.log("score_Array: ", score_Array);
+
+                //$(this).addClass("btn-success").removeClass("btn-info");
+                //alert(tekst_array[i]);
+                var old_html = tekst;
+                var new_html = old_html.replace(tekst_array[i], "<span class='sucesslabel label label-success'>" + tekst_array[i] + "</span>");
+                console.log(new_html);
+                $(this).html(new_html);
+                //korrekt_Array.splice(index, 1);
+                //score++;
+                updateScore();
+            }
+        }*/
     });
 }
 

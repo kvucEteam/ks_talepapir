@@ -10,9 +10,9 @@
 
 .txtudsnit {
     padding: 0px 10px 10px 10px;
-    text-align: center;
+    /* text-align: center; */
     font-size: 16px;
-    background-color: rgba(255, 255, 255, .8);
+    /* background-color: rgba(255, 255, 255, .8); */
     margin-bottom: 10px;
 }
 
@@ -140,7 +140,7 @@ textarea {
 }
 
 .glyphicon-arrow-left {
-    color: #56BFC5;
+    color: white;
 }
 
 .noselect {
@@ -151,4 +151,9 @@ textarea {
   -ms-user-select: none;       /* Internet Explorer/Edge */
   user-select: none;           /* Non-prefixed version, currently
                                   not supported by any browser */
+}
+
+.udklips_content{
+
+    margin-bottom: 10px;
 }
