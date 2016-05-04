@@ -42,12 +42,12 @@ function vis_stikord() {
 
 function tweenMe() {
     $(".textHolder").animate({
-        opacity: "0",
-        left: "-=1000",
-    }, 30, function() {
+        opacity: "0"
+        //left: "-=1000",
+    }, 50, function() {
         $(".textHolder").animate({
-            opacity: "1",
-            left: "+=1000",
+            opacity: "1"
+            //left: "+=1000",
         }, 100, function() {
             // Animation complete.
         });
