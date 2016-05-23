@@ -22,6 +22,8 @@ $(document).ready(function() {
 
     generateHTML();
 
+    rotateCheck();
+
 
 
     updateScore();
@@ -121,8 +123,12 @@ function transfer_text() {
             distance: 25
         });
 
-        $(".udklips_ord").eq($(".udklips_ord").length - 1).click(function() {
+        $(".udklips_ord").click(function() {
             editudklips_ord($(this));
+        })
+
+        $(".edit_btn").click(function() {
+            editudklips_ord($(this).parent().find(".udklips_ord"));
         })
     }
 
@@ -401,9 +407,11 @@ function wordTemplate() {
 function fri_opgave() {
     $(".scoreText, .QuestionCounter").fadeOut(0);
     $("	.btn_word").fadeIn(0);
-    $(".left_wrapper").append("<br/><div class='btn btn-info btn_edit'>Indsæt eller skriv din egen tekst ind<span style='margin-left:20px; font-size:1.4em; color:#888' class='glyphicon glyphicon-pencil'></span></div>")
+    $(".right_wrapper").prepend("<div class='btn btn-lg btn-info btn_edit'>Indsæt din egen tekst<span style='margin-left:20px; font-size:1.4em; color:#888' class='glyphicons glyphicons-paste'></span></div>")
     $(".btn_edit").click(edit_textfield);
-    $(".txt_besvarelse").html("Klik på knappen under, og sæt din egen tekst ind")
+    $(".txt_besvarelse").html("Din egen tekst skal være her...");
+    $(".score_container").css("background-color","transparent").css("padding-left"," 0px");
+    $(".udklips_content, .btn_transfer").css("opacity", ".1")
 }
 
 function edit_textfield() {
@@ -429,7 +437,9 @@ function edit_textfield() {
 
         console.log("input_text:" + input_text);
         $(".txt_besvarelse").html(input_text + "");
+        $(".udklips_content, .btn_transfer").css("opacity", "1")
     });
+ 
 }
 
 /////////////////////////////////////////////////////////////
