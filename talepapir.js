@@ -12,19 +12,12 @@ var edit_mode = false;
 // Gem fil som "Debat.docx"
 
 $(document).ready(function() {
-    //$("h1").html($("body").width() + "px");
-
-    // alert(jsonData.tekst);
-
-    // enable_audio();
 
     init();
 
     generateHTML();
 
     rotateCheck();
-
-
 
     updateScore();
 
@@ -58,11 +51,6 @@ $(document).ready(function() {
     if (jsonData.opgavetype == "fri") {
         fri_opgave();
     }
-
-
-    //txt_selection = "Tester løs";
-    //transfer_text();
-    //
 });
 
 function generateHTML() {
@@ -81,7 +69,7 @@ function init() {
     }
 
 
-    $(".btn_feedback").fadeOut(0);
+    //$(".btn_feedback").fadeOut(0);
     $(".btn_word").fadeOut(0);
     //alert(korrekt_Array);
 };
@@ -105,16 +93,15 @@ function transfer_text() {
         if ($(this).text() == txt_selection) {
             console.log("Den er der i forvejen!");
             exist = true;
-        } else {
-
         }
 
     });
 
-    if (txt_selection.length > 0 && txt_selection.length < 65 && exist === false) {
-        $(".udklips_container").append("<div class='inner_container'><div class='udklips_ord btn btn-info '>" + txt_selection + "</div><div class='edit_btn glyphicon glyphicon-pencil'></div>");
-        $(".udklips_ord").eq(0).fadeOut(0);
-        $(".udklips_ord").eq(0).fadeIn(200);
+    if (txt_selection.length > 1 && txt_selection.length < 65 && exist === false) {
+        $(".udklips_container").append("<div class='inner_container'><div class='udklips_ord btn btn-info '>" + txt_selection + "</div><div class='edit_btn glyphicon glyphicon-pencil'></div><div class='edit_btn glyphicon glyphicon-trash'></div>");
+        $(".glyphicon-trash").hide();
+        $(".udklips_ord").eq($(".udklips_ord").length - 1).fadeOut(0);
+        $(".udklips_ord").eq($(".udklips_ord").length - 1).fadeIn(200);
 
         $(".udklips_container").sortable({
             containment: "parent",
@@ -123,67 +110,84 @@ function transfer_text() {
             distance: 25
         });
 
+        $(".udklips_ord").off("click");
+        $(".edit_btn").off("click");
+
         $(".udklips_ord").click(function() {
-            editudklips_ord($(this));
-        })
+            console.log("clicked u_ord");
+            var indeks = $(this).parent().index();
+            editudklips_ord($(this), indeks);
+        });
 
         $(".edit_btn").click(function() {
+            console.log("edit_btn");
             editudklips_ord($(this).parent().find(".udklips_ord"));
-        })
+        });
     }
 
     tjeksvar();
 }
 
-function editudklips_ord(obj) {
-    console.log("clicked");
+function editudklips_ord(obj, indeks) {
+
     $(".udklips_container").sortable("disable");
 
     var old_text = obj.text();
     var indeks = obj.index();
-    //alert(indeks);
-    $(".udklips_ord").off("click");
+    console.log("Indeks: " + indeks + " old_text: " + old_text);
+
+    obj.off("click");
 
     obj.html("<input type='text' class='edit_field' value='" + old_text + "'>"); //<div class='edit_btn glyphicon glyphicon-trash'></div>");
-
-    obj.parent().find(".edit_btn").switchClass("glyphicon-pencil", "glyphicon-trash");
+    obj.parent().find(".glyphicon-pencil").hide(); //switchClass("glyphicon-pencil", "glyphicon-trash");
+    obj.parent().find(".glyphicon-trash").show();
     $(".edit_field").focus();
 
     $(".edit_field").focusout(function() {
-        console.log("FOCUSOUT");
         var new_text = $(".edit_field").val();
-        $(".edit_field").remove();
 
         obj.html(new_text); // + "<div class='edit_btn glyphicon glyphicon-pencil'></div>");
-        obj.parent().find(".edit_btn").switchClass("glyphicon-trash", "glyphicon-pencil");
+        obj.parent().find(".glyphicon-pencil").show();
+        obj.parent().find(".glyphicon-trash").hide();
 
         $(".udklips_container").sortable("enable");
 
-        $(".udklips_ord").click(function() {
+        obj.click(function() {
+            var detteindeks = $(this).index();
+            console.log("detteindeks:  " + detteindeks);
+            console.log("clicked editudklips_orig");
             editudklips_ord($(this));
         })
+
         tjeksvar();
+        obj.off("focusout");
     });
 
-    $(".glyphicon-trash").click(function() {
+    $(".glyphicon-trash").mousedown(function() {
         var indeks = $(this).parent().index();
         console.log("parent-indeks: " + indeks);
         deleteCallOut(indeks);
+        $(".udklips_ord").off("click");
+        $(".edit_btn").off("click");
         console.log("clicked_trash");
-        //$(".glyphicon-trash").off("click");
+
     });
 
 }
 
 
+
+
 function deleteCallOut(indeks) {
-    //$(".inner_container").eq(indeks).addClass("readyfordelete");
+    $(".inner_container").eq(indeks).addClass("readyfordelete");
     $(".inner_container").css("opacity", ".4");
     $(".inner_container").eq(indeks).css("opacity", "1");
-
-    $(".inner_container").eq(indeks).find(".edit_btn").switchClass("glyphicon-pencil", "glyphicon-trash");
+    //$(".inner_container").eq(indeks).find(".glyphicon-trash").show();
+    //$(".inner_container").eq(indeks).find(".edit_btn").switchClass("glyphicon-pencil", "glyphicon-trash");
     $(".inner_container").eq(indeks).prepend("<div class='label label-primary deleteCallOut'><h5>Slet?</h5></div><span class='glyphicon glyphicon-arrow-down'></span>");
     $(".inner_container").eq(indeks).find(".glyphicon-trash").addClass("readyfordelete");
+
+
     $(".deleteCallOut").click(function() {
         $(this).parent().remove();
         $(".deleteCallOut").off("click");
@@ -193,9 +197,10 @@ function deleteCallOut(indeks) {
 
     //
 
-    /*$(':not(.readyfordelete)').click(function(){
-console.log("clicked elsewhere");
-    });*/
+    $(':not(.readyfordelete)').click(function() {
+        console.log("clicked elsewhere");
+        //$(':not(.readyfordelete)').off("click");
+    });
 
 
     $(document).click(function(e) {
@@ -204,91 +209,34 @@ console.log("clicked elsewhere");
             $(".deleteCallOut").remove();
             $(".glyphicon-arrow-down").remove();
             $(".glyphicon-trash").removeClass("readyfordelete");
-            $(".edit_btn").switchClass("glyphicon-trash", "glyphicon-pencil");
+            //$(".edit_btn").switchClass("glyphicon-trash", "glyphicon-pencil");
             $(".readyfordelete, .deleteCallOut").off("click");
             $(document).off("click");
+            $(".glyphicon-trash").unbind("click");
             $(".inner_container").css("opacity", "1");
-        }
+            $(".edit_btn").css("-webkit-user-select", "none");
 
+            $(".udklips_ord").off("click");
+            $(".edit_btn").off("click");
+
+
+            $(".udklips_ord").click(function() {
+                var indeks = $(this).parent().index();
+                editudklips_ord($(this), indeks);
+            });
+
+            $(".edit_btn").click(function() {
+                editudklips_ord($(this).parent().find(".udklips_ord"));
+            });
+        }
+        //$(document).off("click");
     });
+
+
 
 }
 
-/*function editudklips_ord(obj) {
-    console.log("clicked_container");
-    $(".udklips_container").sortable("disable");
 
-    var old_text = obj.text();
-    var indeks = obj.index();
-    console.log("indeks: "  + indeks + " old_text: " + old_text);
-    //$(".udklips_ord").off("click");
-
-    $(".udklips_ord").eq(indeks).html("<input type='text' class='edit_field' value='" + old_text + "'><div class='edit_btn glyphicon glyphicon-trash'></div>");
-
-    $(".edit_field").focus();
-
-    $(".edit_field").focusout(function() {
-        console.log("FOCUSOUT");
-        var new_text = $(".edit_field").val();
-        $(".edit_field").remove();
-
-        $(".udklips_ord").eq(indeks).html(new_text + "<div class='edit_btn glyphicon glyphicon-pencil'></div>");
-        $(".udklips_container").sortable("enable");
-
-        $(".udklips_ord").click(function() {
-            editudklips_ord($(this));
-        })
-        tjeksvar();
-    });
-
-    $(".edit_btn").click(function(e) {
-    	 e.stopPropagation();
-        console.log("clicked_trash");
-    })
-
-
-    /////////////////////////////
-    //////////////Trash it! ////
-
-
-
-}*/
-
-
-
-/*function tjeksvar() {
-    score = 0;
-    $(".udklips_ord").each(function(index) {
-        console.log("indeks: " + index)
-        var tekst = $(this).text().replace(/[.,\/#!$%\^\*:{}=\-_`~()]/g, ""); //.toLowerCase();
-        var tekst = tekst.replace("<span class='sucesslabel label label-success'>", "");
-        var tekst = tekst.replace("</span>", "");
-
-        var tekst_array = tekst.split(" ");
-
-        for (var i = 0; i < tekst_array.length; i++) {
-            console.log("looper indeks:" + index + "tekst_array: " + i);
-            if (korrekt_Array.indexOf(tekst_array[i]) > -1) {
-
-                // Add til korrekt_Array:
-                if (score_Array.indexOf(tekst_array[i]) < 0) {
-                    score_Array.push(tekst_array[i]);
-                }
-                console.log("score_Array: ", score_Array);
-
-                //$(this).addClass("btn-success").removeClass("btn-info");
-                //alert(tekst_array[i]);
-                var old_html = tekst;
-                var new_html = old_html.replace(tekst_array[i], "<span class='sucesslabel label label-success'>" + tekst_array[i] + "</span>");
-                console.log(new_html);
-                $(this).html(new_html);
-                //korrekt_Array.splice(index, 1);
-                //score++;
-                updateScore();
-            }
-        }
-    });
-}*/
 
 function tjeksvar() {
     score = 0;
@@ -317,41 +265,22 @@ function tjeksvar() {
             }
         }
 
-        //var tekst_array = tekst.split(" ");
-
-        /*for (var i = 0; i < tekst_array.length; i++) {
-            console.log("looper indeks:" + index + "tekst_array: " + i);
-            if (korrekt_Array.indexOf(tekst_array[i]) > -1) {
-
-                // Add til korrekt_Array:
-                if (score_Array.indexOf(tekst_array[i]) < 0) {
-                    score_Array.push(tekst_array[i]);
-                }
-                console.log("score_Array: ", score_Array);
-
-                //$(this).addClass("btn-success").removeClass("btn-info");
-                //alert(tekst_array[i]);
-                var old_html = tekst;
-                var new_html = old_html.replace(tekst_array[i], "<span class='sucesslabel label label-success'>" + tekst_array[i] + "</span>");
-                console.log(new_html);
-                $(this).html(new_html);
-                //korrekt_Array.splice(index, 1);
-                //score++;
-                updateScore();
-            }
-        }*/
     });
 }
 
 function updateScore() {
     $(".QuestionCounter").html(score_Array.length + " ud af " + jsonData.kategorier.length);
-    if (score_Array.length > jsonData.kategorier.length / 2) {
-        $(".btn_feedback, .btn_word").fadeIn(500);
-    }
+
 }
 
 function feedback() {
-    UserMsgBox("body", "<h3>Du har fundet " + score_Array.length + " ud af " + jsonData.kategorier.length + " vigtige ord i prosa teksten.</h3><p>" + jsonData.slutfeedback + "</p>");
+
+    if (score_Array.length > jsonData.kategorier.length / 2) {
+        UserMsgBox("body", "<h3>Du har fundet " + score_Array.length + " ud af " + jsonData.kategorier.length + " vigtige ord i prosa teksten.</h3><p>" + jsonData.slutfeedback + "</p>");
+    } else {
+        UserMsgBox("body", "<h3>Du har fundet " + score_Array.length + " ud af " + jsonData.kategorier.length + " vigtige ord i prosa teksten.</h3><p>Du skal finde mere en halvdelen af de korrekte ord for at downloade dit talepapir.</p>");
+
+    }
 
 }
 
@@ -361,40 +290,111 @@ function downloadWord() {
     var converted = htmlDocx.asBlob(HTML);
     saveAs(converted, 'Talepapir.docx');
 }
+/*
+function wordTemplate() {
+var JS = jsonData.studentSelectedProblems[jsonData.selectedIndexNum];
+var keyProblem = jsonData.keyProblems[JS.selcNo].name;
+var HTML = '';
+HTML += '<!DOCTYPE html>';
+HTML += '<html>';
+HTML += '<head>';
+HTML += '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';  // Fixes issue with danish characters on Internet Explore 
+HTML += '<style type="text/css">';
+HTML += 'body {font-family: arial}';
+HTML += 'h1 {text-align: center; padding: 25px; background-color: #45818E; color: #FFF}';
+HTML += 'h2 {}';
+HTML += 'h3 {font-style: italic; color: #717272}';
+HTML += 'h4 {color: #56bfc5}';
+HTML += 'h5 {}';
+HTML += 'h6 {}';
+HTML += '.selected {color: #56bfc5; width: 25%}';
+HTML += 'p {font-size: 14px; margin-bottom: 5px}';
+HTML += 'table {width:60%; margin-left:70px}';
+HTML += 'td {padding:50px 50px 50px 50px}';
+HTML += 'ol {color: #000}';
+HTML += '.checkQuestion{background-color: #D0E0E3; padding: 1px 10px 10px 10px; margin-bottom: 10px}';
+HTML += '.useMaterial{background-color: #FFD966; padding: 1px 10px 10px 10px; margin-bottom: 10px}';
+HTML += '.innerSpacer{margin: 10px}';
+HTML += '</style>';
+HTML += '</head>';
+HTML += '<body>';
+HTML += '<h1>'+keyProblem+'</h1>';
+// HTML += '<hr/>';
+
+HTML += '<h2>Problemformulering</h2> ';
+HTML += '<p>'+JS.problemFormulationMem[JS.problemFormulationMem.length - 1]+'</p>';
+
+// HTML += '<hr/>';
+
+HTML += '<h2>Underspørgsmål</h2> ';
+HTML += '<ol>';
+for (var n in JS.subQuestionArray){
+HTML += '<li>'+JS.subQuestionArray[n]+'</li>';
+}
+HTML += '</ol>';
+
+HTML += '<h2>Tjekspørgsmål til problemformuleringen:</h2> '; 
+HTML += '<div><table class="checkQuestion">';
+// HTML += '<div class="innerSpacer">';
+HTML += '<tr><td><p><b>Rød tråd:</b> Hænger problemformulering og underspørgsmål sammen? Dvs. kan problemformuleringen besvares ved hjælp af underspørgsmålene? Og er der en sammenhæng mellem underspørgsmålene?</p>';
+HTML += '<p><b>Taksonomi:</b> Lægger problemformuleringen op til undersøgelse, diskussion og vurdering - dvs. ikke kun til redegørelse?</p>';
+HTML += '<p><b></tr></td>Tværfaglighed:</b> Kan viden fra historie, religion og samfundsfag inddrages i den samlede besvarelse af problemformulering og underspørgsmål?</p>';
+// HTML += '</div>';
+HTML += '</table></di>';
+
+HTML += '<div class="useMaterial">';
+HTML += '<p><b>Anvendelse af materiale:</b> Til KS-eksamen er det vigtigt, at spørgsmålene også lægger op til at inddrage det udleverede materiale i besvarelsen!</p>';
+HTML += '</div>';
+
+// Anvendelse af materiale: Til KS-eksamen er det vigtigt, at spørgsmålene også lægger op til at inddrage det udleverede materiale i besvarelsen!
 
 
+HTML += '</body>';
+HTML += '</html>';
+// document.write(HTML);
+return HTML;
+}
+*/
 function wordTemplate() {
     var HTML = '';
     HTML += '<!DOCTYPE html>';
     HTML += '<html>';
     HTML += '<head>';
     HTML += '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'; // Fixes issue with danish characters on Internet Explore 
-    HTML += '<style type="text/css">';
-    HTML += 'body {font-family: arial;}';
+    HTML += '<style type = "text/css" >';
+    HTML += 'body {font-family: arial}';
     HTML += 'h1 {}';
     HTML += 'h2 {}';
-    HTML += 'h3 {color: #717272;}';
-    HTML += 'h4 {color: #56bfc5;}';
+    HTML += 'h3 {color: #333}';
+    HTML += 'h4 {color: #56bfc5}';
     HTML += 'h5 {}';
     HTML += 'h6 {}';
-    HTML += '.selected {color: #56bfc5; width: 25%;}';
+    HTML += '.selected {color: #56bfc5; width: 25%}';
     HTML += 'p {font-size: 14px; margin-bottom: 5px}';
-    HTML += 'table {padding: 8px; width: 100%;}';
-    HTML += 'td {width: 25%;}';
-    HTML += 'ol {color: #717272;}';
+    HTML += 'table {width:95%; margin-left:12px}';
+    HTML += 'td {padding:10px 10px 10px 10px}';
+    HTML += 'ol {color: #000}';
+    HTML += '.checkQuestion{background-color: #acefed; padding: 10px 10px 10px 10px; margin-bottom: 25px}'; // g2
+    HTML += '.useMaterial{background-color: #d2d4ec; padding: 10px 10px 10px 10px; margin-bottom: 25px}'; // e2
+    HTML += '.innerSpacer{margin: 10px}';
+    HTML += '.spacer{}';
     HTML += '</style>';
     HTML += '</head>';
     HTML += '<body>';
     HTML += '<h1>Talepapir</h1>';
-    HTML += '<h3>Underspørgsmål: ' + jsonData.undersspm + '</h3>';
-    HTML += '<h2>Dine stikord og stikordsagtige sætninger: </h2>';
-    HTML += '<h3><ul>';
+    HTML += '<h3>Prosatekst:</h3>';
+    HTML += '<table class="checkQuestion"><tr><td><p>' + $(".txt_besvarelse").text() + '</p></tr></td>';
+    HTML += '</table>';
+    HTML += '<h3>Dine stikord og stikordsagtige sætninger: </h3>';
+    HTML += '';
+
+    HTML += '<ol>';
     for (var i = 0; i < $(".udklips_ord").length; i++) {
         HTML += '<li>' + $(".udklips_ord").eq(i).html() + '</li>';
-        HTML += '<br/>';
-        // HTML +=      '<hr/>';
     }
-    HTML += '</ul></h3>';
+    HTML += '</ol>';
+
+    HTML += ''
     HTML += '</body>';
     HTML += '</html>';
     // document.write(HTML);
@@ -406,16 +406,20 @@ function wordTemplate() {
 
 function fri_opgave() {
     $(".scoreText, .QuestionCounter").fadeOut(0);
-    $("	.btn_word").fadeIn(0);
+    $(".btn_feedback").hide();
+    $(" .btn_word").fadeIn(0);
     $(".right_wrapper").prepend("<div class='btn btn-lg btn-info btn_edit'>Indsæt din egen tekst<span style='margin-left:20px; font-size:1.4em; color:#888' class='glyphicons glyphicons-paste'></span></div>")
     $(".btn_edit").click(edit_textfield);
-    $(".txt_besvarelse").html("Din egen tekst skal være her...");
-    $(".score_container").css("background-color","transparent").css("padding-left"," 0px");
-    $(".udklips_content, .btn_transfer").css("opacity", ".1")
+    $(".txt_besvarelse").html("Når du skriver eller indsætter din egen tekst, optræder den her....").css("color", "#ccc");
+    $(".score_container").css("background-color", "transparent").css("padding-left", " 0px");
+    $(".udklips_content, .btn_transfer").css("opacity", ".1");
+
 }
 
 function edit_textfield() {
     console.log("editing_field");
+
+    $(".txt_besvarelse").css("color", "black");
 
     var old_tekst = $(".txt_besvarelse").html();
     var regex = /<br\s*[\/]?>/gi;
@@ -424,7 +428,6 @@ function edit_textfield() {
     edit_mode = true;
 
     $(".txt_besvarelse").html("<textarea>" + old_tekst + "</textarea>");
-
 
     $("textarea").focus();
 
@@ -439,7 +442,7 @@ function edit_textfield() {
         $(".txt_besvarelse").html(input_text + "");
         $(".udklips_content, .btn_transfer").css("opacity", "1")
     });
- 
+
 }
 
 /////////////////////////////////////////////////////////////

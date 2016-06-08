@@ -20,17 +20,7 @@
     margin-bottom: 10px;
     white-space: normal !important;
     word-wrap: break-word;
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE/Edge */
-    user-select: none;
+    
     text-align: left;
     width: 100%;
 }
@@ -116,19 +106,6 @@ textarea {
     cursor: pointer;
 }
 
-.glyphicon-pencil {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-}
 
 .glyphicon-arrow-down {
     color: #56BFC5;
@@ -160,4 +137,8 @@ textarea {
 
 .btn_edit{
     margin-bottom: 25px;
+}
+
+.talepapir_header{
+    margin-top: 0px;
 }
