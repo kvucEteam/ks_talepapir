@@ -2,6 +2,9 @@ var json_streng;
 
 
 $(document).ready(function() {
+
+   
+      
       $(".instr_container").html(instruction("Et tale papir hjælper dig til at strukturere din mundtlige fremlæggelse til eksamen. <br/> Her kan du se den samme besvarelse af et eksamensspørgsmål som en lang tekst, som sætninger og som stikord."));
 
     $(".btn_prosa").click(vis_prosa);

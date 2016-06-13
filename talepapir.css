@@ -20,7 +20,6 @@
     margin-bottom: 10px;
     white-space: normal !important;
     word-wrap: break-word;
-    
     text-align: left;
     width: 100%;
 }
@@ -106,7 +105,6 @@ textarea {
     cursor: pointer;
 }
 
-
 .glyphicon-arrow-down {
     color: #56BFC5;
     font-size: 2em;
@@ -121,24 +119,42 @@ textarea {
 }
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
-  user-select: none;           /* Non-prefixed version, currently
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                   not supported by any browser */
 }
 
-.udklips_content{
-
+.udklips_content {
     margin-bottom: 10px;
 }
 
-.btn_edit{
+.btn_edit {
     margin-bottom: 25px;
 }
 
-.talepapir_header{
+.talepapir_header {
     margin-top: 0px;
+}
+
+.btn-lg {
+
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.btn_feedback{
+}
+
+.score_container{
+    display:inherit;
 }

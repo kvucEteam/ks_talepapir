@@ -15,6 +15,8 @@ $(document).ready(function() {
 
     init();
 
+    safariWarning();
+
     generateHTML();
 
     rotateCheck();
@@ -120,7 +122,7 @@ function transfer_text() {
         });
 
         $(".edit_btn").click(function() {
-            console.log("edit_btn");
+            console.log("edit");
             editudklips_ord($(this).parent().find(".udklips_ord"));
         });
     }
@@ -428,6 +430,7 @@ function edit_textfield() {
     edit_mode = true;
 
     $(".txt_besvarelse").html("<textarea>" + old_tekst + "</textarea>");
+
 
     $("textarea").focus();
 
