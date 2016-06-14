@@ -158,3 +158,8 @@ textarea {
 .score_container{
     display:inherit;
 }
+
+.score_container .QuestionCounter {
+    margin-right: 20px;
+    margin-left: 5px;
+}
