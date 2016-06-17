@@ -272,7 +272,7 @@ function tjeksvar() {
 
 function updateScore() {
     $(".QuestionCounter").html(score_Array.length + " ud af " + jsonData.kategorier.length);
- if (score_Array.length > 1){//jsonData.kategorier.length / 2) {
+ if (score_Array.length > jsonData.kategorier.length / 2) {
     $(".btn_word").fadeIn(200);
  }
 }
