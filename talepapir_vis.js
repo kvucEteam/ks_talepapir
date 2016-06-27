@@ -9,6 +9,7 @@ $(document).ready(function() {
     $(".btn_stikord").click(vis_stikord);
     $(".btn").click(tweenMe);
     vis_prosa();
+    rotateCheck();
 });
 
 
