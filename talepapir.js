@@ -435,7 +435,13 @@ function edit_textfield() {
 
     $(".txt_besvarelse").css("color", "black");
 
+
+
     var old_tekst = $(".txt_besvarelse").html();
+
+    if (old_tekst == "Når du skriver eller indsætter din egen tekst, optræder den her....") {
+        old_tekst = "";
+    }
     var regex = /<br\s*[\/]?>/gi;
     old_tekst = old_tekst.replace(regex, "\n");
     console.log("old_tekst: " + old_tekst);
