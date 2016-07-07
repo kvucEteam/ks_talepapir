@@ -18,6 +18,7 @@ function vis_prosa() {
     $(".btn").removeClass("vuc-info-active");
     $(".btn_prosa").addClass("vuc-info-active");
     $(".tale_header").html("LANG TEKSTVISNING");
+    $(".tale_content").html("");
     $(".tale_content").append("<h4>" + jsonData.undersspm + "</h4>");
     $(".tale_content").append(jsonData.tekst);
 }
