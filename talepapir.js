@@ -72,7 +72,7 @@ function init() {
 
 
     //$(".btn_feedback").fadeOut(0);
-    $(".btn_word").fadeOut(0);
+    //$(".btn_word").fadeOut(0);
     //alert(korrekt_Array);
 };
 
