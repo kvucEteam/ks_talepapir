@@ -72,7 +72,7 @@ function init() {
 
 
     //$(".btn_feedback").fadeOut(0);
-    //$(".btn_word").fadeOut(0);
+    //$(".btn_word, #copy").fadeOut(0);
     //alert(korrekt_Array);
 };
 
@@ -283,7 +283,7 @@ function tjeksvar() {
 function updateScore() {
     $(".QuestionCounter").html(score_Array.length + " ud af " + jsonData.kategorier.length);
     if (score_Array.length > jsonData.kategorier.length / 2) {
-        $(".btn_word").fadeIn(200);
+        $(".btn_word, #copy").fadeIn(200);
     }
 }
 
@@ -421,7 +421,7 @@ function wordTemplate() {
 function fri_opgave() {
     $(".scoreText, .QuestionCounter").fadeOut(0);
     $(".btn_feedback").hide();
-    $(" .btn_word").fadeIn(0);
+    $(" .btn_word, #copy").fadeIn(0);
     $(".right_wrapper").prepend("<div class='btn btn-lg btn-info btn_edit'>Indsæt din egen tekst<span style='margin-left:20px; font-size:1.4em; color:#888' class='glyphicons glyphicons-paste'></span></div>")
     $(".btn_edit").click(edit_textfield);
     $(".txt_besvarelse").html("Når du skriver eller indsætter din egen tekst, optræder den her....").css("color", "#ccc");
