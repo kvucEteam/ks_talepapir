@@ -468,3 +468,30 @@ function edit_textfield() {
 
 /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
+
+
+
+$( document ).on('click', "#copy", function(event){
+
+        var wordHTML = wordTemplate();
+        var HTML = '<div id="wordOutput">';
+        HTML += wordHTML.split('<body>')[1].split('</body>')[0];
+        HTML += '<span id="BackToForm" class="btn btn-lg btn-primary">Tilbage til skabelonen</span>';
+        HTML += '</div>';
+
+        console.log('copy - HTML: ' + HTML);
+
+        $('body').append(HTML);
+
+        $('#wordOutput').hide();
+        $('.container-fluid').hide();
+        // $('#wordOutput').show();
+        $( '#wordOutput' ).fadeIn( "slow");
+        
+});
+
+
+$( document ).on('click', "#BackToForm", function(event){
+    $('#wordOutput').remove();
+    $( '.container-fluid' ).fadeIn( "slow");
+});

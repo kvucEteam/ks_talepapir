@@ -177,8 +177,24 @@ textarea {
 .right_wrapper{
     margin-bottom: 60px;
 
+}
 h4{margin-top:0px }
 
 li{
     margin-bottom: 10px;
 }
+
+/******************************/
+
+#copy{
+    margin-top: 60px;
+}
+
+td{background-color: #acefed; padding: 10px 10px 10px 10px; margin-bottom: 25px}
+
+#wordOutput {padding: 50px;}
+
+#wordOutput body {font-family: arial}
+
+#wordOutput h1 {margin-top: 0px;}
+
