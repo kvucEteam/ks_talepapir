@@ -1,5 +1,5 @@
 var colors = ["#ffff99", " #acefed", "#d2d4ec", "#f2b9e1", "#d2d4ec", "#f6c0c0", "#acefed", "#e5c180", "#3ee180"];
-var txt_selection;
+var txt_selection = "De ord, som du markerer, står her";
 var json_streng;
 var pageX;
 var pageY;
@@ -77,8 +77,12 @@ function init() {
 };
 
 function update_selection() {
+    var markering = window.getSelection().toString();
+    //console.log("update selection: " + txt_selection);
     if (edit_mode == false) {
-        txt_selection = window.getSelection().toString();
+        if (markering.length > 0) {
+            txt_selection = window.getSelection().toString();
+        }
         if (txt_selection.length == 0) {
             $(".udklips_content").html("De ord, som du markerer, står her").css("color", "#aaa");
         } else if (txt_selection.length < 65) {
@@ -90,6 +94,7 @@ function update_selection() {
 }
 
 function transfer_text() {
+    console.log("start transfer");
     var exist = false;
     $(".udklips_ord").each(function() {
         if ($(this).text() == txt_selection) {
@@ -98,8 +103,11 @@ function transfer_text() {
         }
 
     });
-
+    console.log(txt_selection.length);
     if (txt_selection.length > 1 && txt_selection.length < 65 && exist === false) {
+
+        console.log("transfer size ok");
+
         $(".udklips_container").append("<div class='inner_container'><div class='udklips_ord btn btn-info '>" + txt_selection + "</div><div class='edit_btn glyphicon glyphicon-pencil'></div><div class='edit_btn glyphicon glyphicon-trash'></div>");
         $(".glyphicon-trash").hide();
         $(".udklips_ord").eq($(".udklips_ord").length - 1).fadeOut(0);
@@ -125,6 +133,8 @@ function transfer_text() {
             console.log("edit");
             editudklips_ord($(this).parent().find(".udklips_ord"));
         });
+        console.log("transfer complete");
+        //$(".udklips_content").html( "De ord, som du markerer, står her";
     }
 
     tjeksvar();
@@ -272,9 +282,9 @@ function tjeksvar() {
 
 function updateScore() {
     $(".QuestionCounter").html(score_Array.length + " ud af " + jsonData.kategorier.length);
- if (score_Array.length > jsonData.kategorier.length / 2) {
-    $(".btn_word").fadeIn(200);
- }
+    if (score_Array.length > jsonData.kategorier.length / 2) {
+        $(".btn_word").fadeIn(200);
+    }
 }
 
 function feedback() {
@@ -425,7 +435,13 @@ function edit_textfield() {
 
     $(".txt_besvarelse").css("color", "black");
 
+
+
     var old_tekst = $(".txt_besvarelse").html();
+
+    if (old_tekst == "Når du skriver eller indsætter din egen tekst, optræder den her....") {
+        old_tekst = "";
+    }
     var regex = /<br\s*[\/]?>/gi;
     old_tekst = old_tekst.replace(regex, "\n");
     console.log("old_tekst: " + old_tekst);
