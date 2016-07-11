@@ -471,7 +471,7 @@ function edit_textfield() {
 
 
 
-$( document ).on('click', "#copy", function(event){
+$( document ).on('click', "#copy, #copy_fri", function(event){
 
         var wordHTML = wordTemplate();
         var HTML = '<div id="wordOutput">';
