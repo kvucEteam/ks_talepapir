@@ -59,7 +59,7 @@ function generateHTML() {
     $(".txt_besvarelse").prepend("<h4>" + jsonData.undersspm + "</h4>" + jsonData.tekst);
     $('#explanationWrapper').html(explanation(jsonData.explanation));
     $(".instr_container").html(instruction(jsonData.Instruktion));
-    $(".right_wrapper").css("height", $(".left_wrapper").height() + "px");
+    //$(".right_wrapper").css("height", $(".left_wrapper").height() + "px");
     $(".inst_wrapper, .right_wrapper, h1, .txtudsnit").addClass("noselect");
 
 }

@@ -165,17 +165,14 @@ textarea {
     margin-left: 5px;
 }
 
-.btn_word {
-    margin-top: 60px;
-}
 
-.btn_word_fri {
-    margin-top: -80px;
+.container-fluid{
+  
 }
-
 
 .right_wrapper{
-    margin-bottom: 60px;
+    margin-bottom: -40px;
+    
 
 }
 h4{margin-top:0px }
@@ -184,15 +181,23 @@ li{
     margin-bottom: 10px;
 }
 
+.download_container{
+    padding-top: 60px 
+
+}
+
+.download_container_fri{
+    padding-bottom: 60px;
+    padding-top:30px;
+}
+
 /*******************************/
 
 #copy_fri{
     margin-top: -80px;
 }
 
-#copy{
-    margin-top: 60px;
-}
+
 
 td{background-color: #acefed; padding: 10px 10px 10px 10px; margin-bottom: 25px}
 
