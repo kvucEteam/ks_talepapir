@@ -63,7 +63,7 @@ $(document).ready(function() {
 function download() {  
     var HTML = '';
     HTML += '<form action="htmlToWord.php" method="post">';
-    HTML +=     '<input type="hidden" name="fileName" id="hiddenField" value="Min introducerende artikel" />';
+    HTML +=     '<input type="hidden" name="fileName" id="hiddenField" value="Talepapir" />';
     HTML +=     '<input id="html" type="hidden" name="html" id="hiddenField" />';
     HTML +=     '<input id="submit" type="submit" class="btn btn-info" value="Konverter" onclick="clearInterval(downloadTimer);">';  // <---- NOTE: The "downloadTimer" is cleared here!
     HTML += '</form>';
@@ -79,7 +79,7 @@ $( document ).on('click', '#submit', function(){
 
 // ADDED 18/1-2018 by THAN - HTML-to-Word-conversion by PHP
 // Some browsers need two clicks on the ".download" btn before the download starts. Therefore a timer is set to loop untill the variable "downloadTimer" is cleared.
-$( document ).on('click', '.btn_word', function(){    
+$( document ).on('click', '#download', function(){    
     console.log('.download - CLICKED - submit');
     window.Tcount = 0;
     window.downloadTimer = setInterval(function(){  // <---- NOTE: The "downloadTimer" is cleared inline in the input-tag "#submit"
