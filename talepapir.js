@@ -26,7 +26,7 @@ $(document).ready(function() {
     $(".btn_transfer").click(transfer_text);
     $(".btn_tjek").click(tjeksvar);
     $(".btn_feedback").click(feedback);
-    $(".btn_word").click(downloadWord);
+    // $(".btn_word").click(downloadWord);  // Commented out by THAN d. 29/1-2018
 
     $(document).keydown(function(e) {
         if (e.keyCode == 13) {
@@ -53,7 +53,43 @@ $(document).ready(function() {
     if (jsonData.opgavetype == "fri") {
         fri_opgave();
     }
+
+    download(); // Added by THAN 29/1-2018
 });
+
+
+// ADDED 18/1-2018 by THAN - HTML-to-Word-conversion by PHP
+// The btn #submit by input type="submit" has a diffrent CSS-style... therefore another btn .download is used and click on the #submit btn.
+function download() {  
+    var HTML = '';
+    HTML += '<form action="htmlToWord.php" method="post">';
+    HTML +=     '<input type="hidden" name="fileName" id="hiddenField" value="Min introducerende artikel" />';
+    HTML +=     '<input id="html" type="hidden" name="html" id="hiddenField" />';
+    HTML +=     '<input id="submit" type="submit" class="btn btn-info" value="Konverter" onclick="clearInterval(downloadTimer);">';  // <---- NOTE: The "downloadTimer" is cleared here!
+    HTML += '</form>';
+    $('.container-fluid').append(HTML);
+}
+
+// ADDED 18/1-2018 by THAN - HTML-to-Word-conversion by PHP
+// If this is not present, some browseres starts to download an empty htmlToWord.php file instead of the intended .docx file.
+$( document ).on('click', '#submit', function(){  
+    console.log('#submit - CLICKED - submit');
+    $('#html').val(wordTemplate());
+});
+
+// ADDED 18/1-2018 by THAN - HTML-to-Word-conversion by PHP
+// Some browsers need two clicks on the ".download" btn before the download starts. Therefore a timer is set to loop untill the variable "downloadTimer" is cleared.
+$( document ).on('click', '.btn_word', function(){    
+    console.log('.download - CLICKED - submit');
+    window.Tcount = 0;
+    window.downloadTimer = setInterval(function(){  // <---- NOTE: The "downloadTimer" is cleared inline in the input-tag "#submit"
+        $('#submit').trigger('click');
+        ++Tcount;
+        console.log('download - CLICKED - Tcount: ' + Tcount);
+    }, 200);
+});
+
+
 
 function generateHTML() {
     $(".txt_besvarelse").prepend("<h4>" + jsonData.undersspm + "</h4>" + jsonData.tekst);

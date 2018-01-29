@@ -207,3 +207,6 @@ td{background-color: #acefed; padding: 10px 10px 10px 10px; margin-bottom: 25px}
 
 #wordOutput h1 {margin-top: 0px;}
 
+#submit {
+    display: none;
+}
